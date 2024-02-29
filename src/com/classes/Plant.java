@@ -3,7 +3,7 @@ package com.classes;
 import java.time.LocalDate;
 
 
-public class Plant {
+public class Plant implements Comparable<Plant>{
     String name;
     String notes;
     LocalDate planted;
@@ -82,23 +82,27 @@ public class Plant {
 
     ///endregion setter and getter
 
-    public String getWateringInfo(String name, LocalDate watering, LocalDate nextWatering) {
-        {
-            nextWatering = watering.plusDays(7);
-        }
-        return "Next watering of " + name + "should be " + nextWatering + "day, last day of watering the plant is: " + watering;
+    public String getWateringInfo(){
+        return name + ": last watering:" + this.watering + "; next watering: " + this.watering.plusDays(this.frequencyOfWatering);
     }
 
     @Override
     public String toString() {
-        return "Plant{" +
-                "name='" + name + '\'' +
-                ", notes='" + notes + '\'' +
-                ", planted=" + planted +
-                ", watering=" + watering +
-                ", frequencyOfWatering=" + frequencyOfWatering +
-                '}';
+        return "\nname: " + name +
+                ", \tnotes: " + notes +
+                ", \tplanted: " + planted +
+                ", \twatering: " + watering +
+                ", \tfrequency of watering: " + frequencyOfWatering;
     }
+
+    @Override
+    public int compareTo(Plant otherPlant) {
+        return this.getName().compareTo(otherPlant.getName());
+    }
+
 }
+
+
+
 
 
